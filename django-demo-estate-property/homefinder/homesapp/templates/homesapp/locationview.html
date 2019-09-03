@@ -1,0 +1,107 @@
+{% extends 'homesapp/base.html' %}
+ {% block body %}
+<html>
+<head>
+<style>
+ .table {
+ border: 1px solid blue;
+ }
+  .panel-heading{
+        background-color:blue;
+        }
+
+</style>
+</head>
+<body>
+<div class="col-md-1">
+
+</div>f
+<div class="col-md-8">
+ <h1>
+  Properties in {{ location.location_name }}
+ </h1>
+
+
+{% for place in location.property_set.all  %}
+  <div class="panel-group">
+   <div class="panel panel-primary">
+    <div class="panel-heading">
+     {{place.property_name }}
+    </div>
+    <div class="panel-body">
+     <div class="col-md-4">
+      <img src="{{place.image_url}}" height="200" width="200" alt="">
+     </div>
+     <div class="col-md-6">
+      <table class="table">
+       <tbody>
+       <tr>
+        <td>
+         <label>
+          <b>AREA SQFT</b>
+         </label>
+        </td>
+        <td>{{place.area}}</td>
+       </tr>
+         <tr>
+        <td>
+         <label>
+          <b>Price</b>
+         </label>
+        </td>
+        <td>{{place.price}}$</td>
+       </tr>
+         <tr>
+        <td>
+         <label>
+          <b>Floors</b>
+         </label>
+        </td>
+        <td>{{place.floor}}</td>
+       </tr>
+         <tr>
+        <td>
+         <label>
+          <b>Post Address</b>
+         </label>
+        </td>
+        <td>{{place.postadress}}</td>
+       </tr>
+         <tr>
+        <td>
+         <label>
+          <b>Direction</b>
+         </label>
+        </td>
+        <td>{{place.direction}}</td>
+       </tr>
+         <tr>
+        <td>
+         <label>
+          <b>Age</b>
+         </label>
+        </td>
+        <td>{{place.age}} years</td>
+       </tr>
+       <tr>
+        <td></td>
+        <td></td>
+        <td> <a class="btn btn-success" href=" /homesapp/{{location.id}}/{{place.id}}">
+         View Details
+        </a></td>
+       </tr>
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   {% endfor %}
+  </div>
+
+</div>
+</body>
+</html>
+<a href="/homesapp/{{location.id}}/{{place.id}}"> {{place.property_name   }}</a>
+
+
+{% endblock %}
